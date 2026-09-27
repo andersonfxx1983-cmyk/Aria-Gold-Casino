@@ -39,32 +39,43 @@
 
         #toastContainer {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
+            bottom: 20px;
+            right: 20px;
+            left: 20px;
             z-index: 5000;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        @media (min-width: 600px) {
+            #toastContainer {
+                left: auto;
+                max-width: 400px;
+            }
         }
 
         .toast {
             background: linear-gradient(135deg, #182033, #0f1420);
             border-left: 4px solid var(--accent-gold);
             color: var(--text-white);
-            padding: 16px 24px;
+            padding: 14px 20px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-            font-size: 14px;
+            font-size: 13px;
             animation: slideInRight 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(241, 196, 15, 0.25);
             backdrop-filter: blur(10px);
+            pointer-events: auto;
         }
 
         @keyframes slideInRight {
-            from { transform: translateX(120%) scale(0.9); opacity: 0; }
-            to { transform: translateX(0) scale(1); opacity: 1; }
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
+        /* MODALES RESPONSIVOS */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -77,6 +88,7 @@
             justify-content: center;
             align-items: center;
             z-index: 2000;
+            padding: 15px;
             animation: fadeIn 0.3s ease;
         }
 
@@ -88,9 +100,10 @@
         .modal-card {
             background: linear-gradient(145deg, #131a2b, #0e1320);
             border: 2px solid rgba(241, 196, 15, 0.4);
-            padding: 35px;
+            padding: 25px 20px;
             border-radius: 20px;
-            width: 540px;
+            width: 100%;
+            max-width: 540px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), var(--shadow-gold);
             text-align: center;
             max-height: 90vh;
@@ -98,17 +111,25 @@
             animation: scaleUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        @media (min-width: 600px) {
+            .modal-card { padding: 35px; }
+        }
+
         @keyframes scaleUp {
-            from { transform: scale(0.8); opacity: 0; }
+            from { transform: scale(0.9); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
 
         .modal-card h2 {
             color: var(--accent-gold);
             margin-bottom: 20px;
-            font-size: 24px;
-            letter-spacing: 2px;
+            font-size: 20px;
+            letter-spacing: 1.5px;
             text-shadow: 0 2px 15px rgba(241, 196, 15, 0.4);
+        }
+
+        @media (min-width: 600px) {
+            .modal-card h2 { font-size: 24px; letter-spacing: 2px; }
         }
 
         .modal-card input, .modal-card select {
@@ -167,11 +188,13 @@
         }
         .auth-switch-text:hover { color: var(--accent-gold); }
 
+        /* HEADER RESPONSIVO */
         header {
-            background: rgba(17, 22, 34, 0.9);
+            background: rgba(17, 22, 34, 0.95);
             backdrop-filter: blur(15px);
-            padding: 20px 40px;
+            padding: 12px 15px;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid rgba(241, 196, 15, 0.25);
@@ -179,95 +202,115 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            gap: 10px;
+        }
+
+        @media (min-width: 768px) {
+            header { padding: 18px 30px; gap: 0; }
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
             color: var(--accent-gold);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             text-shadow: 0 2px 15px rgba(241, 196, 15, 0.5);
+        }
+
+        @media (min-width: 600px) {
+            .logo { font-size: 22px; letter-spacing: 2px; }
         }
 
         .header-actions {
             display: flex;
-            gap: 15px;
+            gap: 8px;
             align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        @media (min-width: 600px) {
+            .header-actions { width: auto; gap: 12px; }
         }
 
         .user-badge {
-            font-size: 13px;
+            font-size: 12px;
             background: var(--bg-input);
-            padding: 6px 14px;
+            padding: 4px 10px;
             border-radius: 25px;
             border: 1px solid rgba(241, 196, 15, 0.3);
             color: var(--accent-gold-light);
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             cursor: pointer;
             transition: all 0.3s;
         }
 
-        .user-badge:hover {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 15px rgba(241,196,15,0.3);
+        @media (min-width: 600px) {
+            .user-badge { padding: 6px 14px; font-size: 13px; }
         }
 
         .profile-avatar {
-            width: 34px;
-            height: 34px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             border: 2px solid var(--accent-gold);
             object-fit: cover;
+        }
+
+        @media (min-width: 600px) {
+            .profile-avatar { width: 34px; height: 34px; }
         }
 
         .wallet-btn {
             background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
             border: none;
             color: var(--bg-main);
-            padding: 11px 22px;
+            padding: 8px 14px;
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: all 0.3s;
             box-shadow: 0 4px 18px rgba(241,196,15,0.3);
         }
 
-        .wallet-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 22px rgba(241,196,15,0.5);
+        @media (min-width: 600px) {
+            .wallet-btn { padding: 10px 20px; font-size: 14px; }
         }
 
         .settings-btn, .logout-btn {
             background: var(--bg-input);
             border: 1px solid var(--accent-gold);
             color: var(--accent-gold);
-            padding: 10px 16px;
+            padding: 8px 12px;
+            font-size: 12px;
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
         }
 
-        .settings-btn:hover, .logout-btn:hover {
-            background: var(--accent-gold);
-            color: var(--bg-main);
-            box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
+        @media (min-width: 600px) {
+            .settings-btn, .logout-btn { padding: 10px 16px; font-size: 13px; }
         }
 
+        /* DRAWER DE BILLETERA RESPONSIVO */
         .wallet-drawer {
             position: fixed;
             top: 0;
-            right: -450px;
-            width: 430px;
+            right: -100%;
+            width: 100%;
+            max-width: 420px;
             height: 100%;
             background: linear-gradient(180deg, rgba(19, 26, 43, 0.98), rgba(11, 15, 25, 0.98));
             border-left: 2px solid rgba(241, 196, 15, 0.4);
@@ -275,20 +318,20 @@
             z-index: 2500;
             display: flex;
             flex-direction: column;
-            transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .wallet-drawer.open { right: 0; }
 
         .wallet-header {
-            padding: 25px;
+            padding: 20px;
             border-bottom: 1px solid var(--bg-input);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .wallet-header h3 { color: var(--accent-gold); font-size: 20px; }
+        .wallet-header h3 { color: var(--accent-gold); font-size: 18px; }
 
         .close-drawer {
             background: none;
@@ -301,7 +344,7 @@
         .wallet-content {
             flex: 1;
             overflow-y: auto;
-            padding: 25px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -316,13 +359,13 @@
         }
 
         .wallet-balance-box h4 { color: var(--text-gray); font-size: 12px; margin-bottom: 6px; }
-        .wallet-balance-box span { color: var(--accent-gold); font-size: 30px; font-weight: bold; }
+        .wallet-balance-box span { color: var(--accent-gold); font-size: 26px; font-weight: bold; }
 
         .glass-panel {
             background: rgba(17, 20, 31, 0.86);
             border: 1px solid rgba(241, 196, 15, 0.22);
             border-radius: 16px;
-            padding: 18px;
+            padding: 16px;
         }
 
         .topup-btn, .withdraw-btn {
@@ -338,18 +381,19 @@
         .topup-btn { background: linear-gradient(135deg, #22c55e, #15803d); color: white; }
         .withdraw-btn { background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark)); color: var(--bg-main); }
 
+        /* PANEL ADMIN RESPONSIVO */
         .admin-box {
             background: rgba(22, 30, 48, 0.95);
             border: 1px solid var(--accent-gold);
             border-radius: 12px;
-            padding: 18px;
+            padding: 15px;
             margin-top: 15px;
             text-align: left;
         }
 
         .admin-box h4 {
             color: var(--accent-gold);
-            font-size: 15px;
+            font-size: 14px;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
@@ -360,47 +404,77 @@
 
         .admin-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr;
             gap: 8px;
         }
 
+        @media (min-width: 480px) {
+            .admin-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         .admin-grid button {
-            padding: 9px;
+            padding: 10px;
             font-size: 11px;
             margin: 0;
         }
 
+        /* CONTENEDOR PRINCIPAL Y BANNER */
         .container {
             max-width: 1250px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .container { padding: 30px 20px; }
         }
 
         .casino-banner {
             background: linear-gradient(135deg, #161e31, #101624);
             border: 1px solid rgba(241, 196, 15, 0.35);
             border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 35px;
+            padding: 20px;
+            margin-bottom: 25px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
         }
 
-        .banner-info h3 { color: var(--accent-gold); font-size: 22px; margin-bottom: 6px; }
-        .banner-info p { color: var(--text-gray); font-size: 14px; }
+        @media (min-width: 768px) {
+            .casino-banner {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+                padding: 30px;
+                margin-bottom: 35px;
+            }
+        }
 
+        .banner-info h3 { color: var(--accent-gold); font-size: 18px; margin-bottom: 6px; }
+        @media (min-width: 600px) { .banner-info h3 { font-size: 22px; } }
+        .banner-info p { color: var(--text-gray); font-size: 13px; }
+
+        /* MALA DE JUEGOS RESPONSIVA */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 15px;
+        }
+
+        @media (min-width: 600px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+                gap: 22px;
+            }
         }
 
         .product-card {
             background-color: var(--bg-card);
             border: 1px solid var(--bg-input);
             border-radius: 14px;
-            padding: 22px;
+            padding: 18px;
             transition: all 0.3s;
             display: flex;
             flex-direction: column;
@@ -413,11 +487,11 @@
             border-color: rgba(241, 196, 15, 0.5);
         }
 
-        .product-card h3 { color: var(--accent-gold); font-size: 18px; margin-bottom: 8px; }
-        .product-card p { color: var(--text-gray); font-size: 13px; margin-bottom: 18px; }
+        .product-card h3 { color: var(--accent-gold); font-size: 16px; margin-bottom: 8px; }
+        .product-card p { color: var(--text-gray); font-size: 12px; margin-bottom: 16px; }
 
         .play-game-btn {
-            padding: 10px 18px;
+            padding: 10px 16px;
             background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
             color: var(--bg-main);
             border: none;
@@ -425,29 +499,30 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 13px;
         }
 
         .profile-info-row {
             display: flex;
             justify-content: space-between;
             background: var(--bg-input);
-            padding: 10px 14px;
+            padding: 8px 12px;
             border-radius: 8px;
             margin-bottom: 8px;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .profile-info-row span:first-child { color: var(--text-gray); }
         .profile-info-row span:last-child { color: var(--accent-gold-light); font-weight: bold; }
 
-        /* ESTILOS DE JUEGOS Y ANIMACIONES */
+        /* ESTILOS DE ARENA DE JUEGOS RESPONSIVOS */
         .game-arena {
             background: #0a0d14;
             border: 2px solid var(--accent-gold);
             border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 18px;
-            min-height: 190px;
+            padding: 15px;
+            margin-bottom: 15px;
+            min-height: 180px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -455,19 +530,24 @@
             position: relative;
             box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
             overflow: hidden;
+            width: 100%;
         }
 
         .slots-box {
             display: flex;
-            gap: 15px;
-            font-size: 55px;
+            gap: 8px;
+        }
+
+        @media (min-width: 480px) {
+            .slots-box { gap: 15px; }
         }
 
         .slot-reel {
             background: #151c2e;
             border: 2px solid var(--accent-gold);
-            width: 80px;
-            height: 90px;
+            width: 65px;
+            height: 75px;
+            font-size: 35px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -475,9 +555,11 @@
             box-shadow: inset 0 0 15px rgba(0,0,0,0.9);
         }
 
-        .spinning {
-            animation: slotSpin 0.15s linear infinite;
+        @media (min-width: 480px) {
+            .slot-reel { width: 80px; height: 90px; font-size: 45px; }
         }
+
+        .spinning { animation: slotSpin 0.15s linear infinite; }
 
         @keyframes slotSpin {
             0% { transform: translateY(-10px) scale(0.9); filter: blur(2px); }
@@ -486,23 +568,25 @@
         }
 
         .roulette-wheel-box {
-            width: 120px;
-            height: 120px;
-            border: 6px solid var(--accent-gold);
+            width: 100px;
+            height: 100px;
+            border: 5px solid var(--accent-gold);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             background: radial-gradient(circle, #1e293b, #0f172a);
             box-shadow: 0 0 30px rgba(241,196,15,0.4);
             transition: transform 2s cubic-bezier(0.1, 0.8, 0.1, 1);
         }
 
-        .wheel-fast-spin {
-            animation: spinWheel 0.2s linear infinite;
+        @media (min-width: 480px) {
+            .roulette-wheel-box { width: 120px; height: 120px; font-size: 32px; border-width: 6px; }
         }
+
+        .wheel-fast-spin { animation: spinWheel 0.2s linear infinite; }
 
         @keyframes spinWheel {
             from { transform: rotate(0deg); }
@@ -510,21 +594,20 @@
         }
 
         .crash-value {
-            font-size: 50px;
+            font-size: 40px;
             font-weight: bold;
             color: var(--accent-gold);
             text-shadow: 0 0 20px rgba(241,196,15,0.6);
         }
 
+        @media (min-width: 480px) { .crash-value { font-size: 50px; } }
+
         .dice-container {
             display: flex;
-            gap: 20px;
-            font-size: 50px;
+            gap: 15px;
         }
 
-        .dice-roll {
-            animation: diceShake 0.1s linear infinite;
-        }
+        .dice-roll { animation: diceShake 0.1s linear infinite; }
 
         @keyframes diceShake {
             0% { transform: rotate(-20deg) scale(0.9); }
@@ -534,45 +617,55 @@
 
         .card-hand {
             display: flex;
-            gap: 12px;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .card-item {
             background: #ffffff;
             color: #111;
-            width: 60px;
-            height: 85px;
-            border-radius: 8px;
+            width: 50px;
+            height: 70px;
+            border-radius: 6px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 26px;
+            font-size: 20px;
             font-weight: bold;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
             border: 1px solid #ccc;
+        }
+
+        @media (min-width: 480px) {
+            .card-item { width: 60px; height: 85px; font-size: 26px; border-radius: 8px; }
         }
 
         .grid-5x5 {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
+            gap: 5px;
             width: 100%;
-            max-width: 320px;
+            max-width: 300px;
         }
 
         .grid-cell {
             background: var(--bg-input);
             border: 1px solid rgba(241,196,15,0.3);
-            border-radius: 8px;
-            height: 48px;
+            border-radius: 6px;
+            height: 42px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 18px;
+            font-size: 14px;
             cursor: pointer;
             font-weight: bold;
             user-select: none;
             transition: all 0.2s;
+        }
+
+        @media (min-width: 480px) {
+            .grid-cell { height: 48px; font-size: 16px; border-radius: 8px; }
         }
 
         .grid-cell:hover {
@@ -585,9 +678,7 @@
             border-color: var(--accent-gold);
         }
 
-        .coin-flip-anim {
-            animation: coinFlip 0.5s ease-in-out infinite;
-        }
+        .coin-flip-anim { animation: coinFlip 0.5s ease-in-out infinite; }
 
         @keyframes coinFlip {
             0% { transform: rotateY(0deg) scale(1); }
@@ -597,18 +688,14 @@
 
         .chests-container {
             display: flex;
-            gap: 20px;
-            font-size: 50px;
+            gap: 15px;
+            font-size: 40px;
         }
 
-        .chest-item {
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+        @media (min-width: 480px) { .chests-container { gap: 20px; font-size: 50px; } }
 
-        .chest-item:hover {
-            transform: scale(1.15);
-        }
+        .chest-item { cursor: pointer; transition: transform 0.2s; }
+        .chest-item:hover { transform: scale(1.15); }
     </style>
 </head>
 <body>
@@ -645,7 +732,7 @@
         <div class="modal-card">
             <h2>👤 PERFIL DE CUENTA</h2>
             <div style="margin-bottom: 18px;">
-                <img id="modalProfileImg" src="https://via.placeholder.com/100" class="profile-avatar" style="width: 90px; height: 90px; margin-bottom: 10px;">
+                <img id="modalProfileImg" src="https://via.placeholder.com/100" class="profile-avatar" style="width: 80px; height: 80px; margin-bottom: 10px;">
                 <div>
                     <input type="text" id="newAvatarUrl" placeholder="URL de nueva foto de perfil" style="margin-bottom: 6px;">
                     <button onclick="updateAvatar()" style="padding: 8px; font-size: 12px;">Actualizar Foto</button>
@@ -653,7 +740,7 @@
             </div>
 
             <div class="profile-info-row"><span>Usuario:</span><span id="profUser">-</span></div>
-            <div class="profile-info-row"><span>UID (ID Único):</span><span id="profUid" style="color: var(--accent-gold); font-size: 15px;">-</span></div>
+            <div class="profile-info-row"><span>UID (ID Único):</span><span id="profUid" style="color: var(--accent-gold);">-</span></div>
             <div class="profile-info-row"><span>Correo:</span><span id="profEmail">-</span></div>
             <div class="profile-info-row"><span>Documento:</span><span id="profIdentity">-</span></div>
             <div class="profile-info-row"><span>Rango VIP:</span><span id="profVip">GOLD</span></div>
@@ -666,14 +753,14 @@
 
     <!-- MODAL DE JUEGO GENERAL -->
     <div id="gameModal" class="modal-overlay" style="display: none;">
-        <div class="modal-card" style="width: 580px;">
+        <div class="modal-card">
             <h2 id="gameModalTitle">Juego de Casino</h2>
             
             <div id="gameArenaContainer" class="game-arena">
                 <!-- Contenido interactivo dinámico -->
             </div>
 
-            <p id="gameStatusText" style="color: var(--accent-gold); font-size: 14px; font-weight: bold; margin-bottom: 15px; min-height: 20px;"></p>
+            <p id="gameStatusText" style="color: var(--accent-gold); font-size: 13px; font-weight: bold; margin-bottom: 15px; min-height: 20px;"></p>
 
             <div id="gameControls">
                 <div style="display: flex; gap: 10px; margin-bottom: 12px;">
@@ -688,12 +775,12 @@
 
     <!-- MODAL DE AJUSTES & ADMINISTRACIÓN -->
     <div id="settingsModal" class="modal-overlay" style="display: none;">
-        <div class="modal-card" style="width: 620px;">
+        <div class="modal-card">
             <h2>⚙️ AJUSTES Y SISTEMA</h2>
             
             <div class="glass-panel" style="margin-bottom: 15px; text-align: left;">
-                <h4 style="color: var(--accent-gold); margin-bottom: 10px;">🔊 Sonido y Preferencias</h4>
-                <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h4 style="color: var(--accent-gold); margin-bottom: 10px; font-size: 14px;">🔊 Sonido y Preferencias</h4>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
                     <span>Efectos de Audio Vegas</span>
                     <input type="checkbox" id="soundEffectsToggle" checked style="width: 20px; height: 20px; accent-color: var(--accent-gold);">
                 </div>
@@ -701,7 +788,7 @@
 
             <!-- ACCESO ADMINISTRADOR -->
             <div id="adminAuthSection" class="glass-panel" style="text-align: left;">
-                <h4 style="color: var(--accent-gold); margin-bottom: 8px;">🔐 Panel de Administración</h4>
+                <h4 style="color: var(--accent-gold); margin-bottom: 8px; font-size: 14px;">🔐 Panel de Administración</h4>
                 <p style="color: var(--text-gray); font-size: 12px; margin-bottom: 10px;">Ingrese la clave maestra para acceder a las opciones de administración.</p>
                 <input type="password" id="adminPassInput" placeholder="Contraseña de Administrador">
                 <button onclick="verifyAdminPass()">Desbloquear Panel Admin</button>
@@ -712,7 +799,7 @@
                 <h4>🛡️ 15 COMANDOS REALES DE ADMINISTRADOR</h4>
                 <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 10px;">Ingrese el **UID de 7 dígitos** del usuario objetivo para ejecutar la acción:</p>
 
-                <input type="text" id="adminTargetUid" placeholder="UID del Usuario Objetivo (Ej: 8492018)">
+                <input type="text" id="adminTargetUid" placeholder="UID Objetivo (Ej: 8492018)">
 
                 <div class="admin-grid">
                     <div>
@@ -720,13 +807,13 @@
                         <button onclick="adminAddMoney()" style="background: #16a34a; color: white;">1. Acreditar Saldo</button>
                     </div>
                     <div>
-                        <button onclick="adminRemoveMoney()" style="background: #dc2626; color: white; margin-top: 38px;">2. Debitar Saldo</button>
+                        <button onclick="adminRemoveMoney()" style="background: #dc2626; color: white; margin-top: 4px;">2. Debitar Saldo</button>
                     </div>
                 </div>
 
                 <!-- CONFIGURACIÓN DE TIEMPO / CONGELAMIENTO -->
                 <div style="border-top: 1px dashed rgba(241,196,15,0.3); margin-top: 10px; padding-top: 10px;">
-                    <p style="font-size: 11px; color: var(--accent-gold); margin-bottom: 6px;">⏳ Ajustes de Tiempo (Para Baneos o Congelamiento):</p>
+                    <p style="font-size: 11px; color: var(--accent-gold); margin-bottom: 6px;">⏳ Ajustes de Tiempo:</p>
                     <div style="display: flex; gap: 8px; margin-bottom: 8px;">
                         <input type="number" id="timeDurationInput" placeholder="Duración" style="width: 40%; margin: 0;">
                         <select id="timeUnitSelect" style="width: 60%; margin: 0;">
@@ -768,7 +855,7 @@
     <div id="bannedModal" class="modal-overlay" style="display: none; z-index: 5000;">
         <div class="modal-card" style="border-color: var(--accent-red);">
             <h2 style="color: var(--accent-red);">⛔ CUENTA BANEADA</h2>
-            <p id="bannedReasonText" style="color: var(--text-gray); margin-bottom: 20px;"></p>
+            <p id="bannedReasonText" style="color: var(--text-gray); margin-bottom: 20px; font-size: 13px;"></p>
             <button onclick="logout()" style="background: var(--accent-red); color: white;">Cerrar Sesión</button>
         </div>
     </div>
@@ -788,8 +875,8 @@
                 <button class="wallet-btn" onclick="toggleWalletDrawer()">
                     💰 <span id="headerBalance">$0 COP</span>
                 </button>
-                <button class="settings-btn" onclick="openSettings()">⚙️ Ajustes</button>
-                <button class="logout-btn" onclick="logout()">🚪 Salir</button>
+                <button class="settings-btn" onclick="openSettings()">⚙️</button>
+                <button class="logout-btn" onclick="logout()">🚪</button>
             </div>
         </header>
 
@@ -797,14 +884,14 @@
             <div class="casino-banner">
                 <div class="banner-info">
                     <h3>Bienvenido a las Mesas de Juego Aria Gold</h3>
-                    <p>15 juegos exclusivos diseñados con alta tasa de victorias para los jugadores.</p>
+                    <p>15 juegos exclusivos adaptados para PC y dispositivos móviles.</p>
                 </div>
-                <div style="background: var(--bg-main); border: 1px solid var(--accent-gold); padding: 12px 20px; border-radius: 10px; font-weight: bold; color: var(--accent-gold);">
+                <div style="background: var(--bg-main); border: 1px solid var(--accent-gold); padding: 10px 16px; border-radius: 10px; font-weight: bold; color: var(--accent-gold); font-size: 13px;">
                     SALA REAL VEGAS 🎰
                 </div>
             </div>
 
-            <h2 style="color: var(--accent-gold); margin-bottom: 20px;">🎰 Catálogo de 15 Juegos Funcionales</h2>
+            <h2 style="color: var(--accent-gold); margin-bottom: 15px; font-size: 18px;">🎰 Catálogo de 15 Juegos Funcionales</h2>
             <div class="product-grid">
                 <div class="product-card">
                     <h3>1. GOLDEN EMPIRE SLOTS</h3>
@@ -896,17 +983,17 @@
             <div class="wallet-balance-box">
                 <h4>Saldo Disponible</h4>
                 <span id="drawerBalance">$0 COP</span>
-                <p id="drawerFreezeNotice" style="color: var(--accent-red); font-size: 12px; font-weight: bold; margin-top: 6px; display: none;">
+                <p id="drawerFreezeNotice" style="color: var(--accent-red); font-size: 11px; font-weight: bold; margin-top: 6px; display: none;">
                     🧊 BILLETERA CONGELADA POR ADMINISTRACIÓN
                 </p>
             </div>
             <div class="glass-panel">
-                <h4 style="color: var(--accent-gold); margin-bottom: 10px;">💳 Recargar Dinero</h4>
+                <h4 style="color: var(--accent-gold); margin-bottom: 10px; font-size: 14px;">💳 Recargar Dinero</h4>
                 <input type="number" id="topUpAmount" placeholder="Monto COP">
                 <button class="topup-btn" onclick="userTopUp()">Recargar</button>
             </div>
             <div class="glass-panel">
-                <h4 style="color: var(--accent-gold); margin-bottom: 10px;">🏦 Solicitar Retiro</h4>
+                <h4 style="color: var(--accent-gold); margin-bottom: 10px; font-size: 14px;">🏦 Solicitar Retiro</h4>
                 <input type="number" id="withdrawAmount" placeholder="Monto COP">
                 <button class="withdraw-btn" onclick="userWithdraw()">Retirar</button>
             </div>
@@ -1006,7 +1093,6 @@
             if (activeUserUid && usersDB[activeUserUid]) {
                 let user = usersDB[activeUserUid];
 
-                // Verificar Baneo
                 if (user.banned) {
                     if (user.banUntil && user.banUntil !== 'permanent' && new Date().getTime() > user.banUntil) {
                         user.banned = false;
@@ -1098,7 +1184,7 @@
                     email: email,
                     identity: identity,
                     password: password,
-                    balance: 0, // CAMBIADO: Inicia en 0 pesos ($0 COP)
+                    balance: 0, // INICIA SIEMPRE CON 0 PESOS
                     avatar: 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
                     banned: false,
                     banUntil: null,
@@ -1155,7 +1241,7 @@
 
         function userTopUp() {
             let u = usersDB[activeUserUid];
-            if (isWalletFrozen(u)) return showToast('🧊 Tu billetera está congelada por el administrador. No puedes realizar transacciones.');
+            if (isWalletFrozen(u)) return showToast('🧊 Tu billetera está congelada por el administrador.');
             let amt = parseInt(document.getElementById('topUpAmount').value);
             if (!amt || amt <= 0) return showToast('Monto inválido.');
             u.balance += amt;
@@ -1167,7 +1253,7 @@
 
         function userWithdraw() {
             let u = usersDB[activeUserUid];
-            if (isWalletFrozen(u)) return showToast('🧊 Tu billetera está congelada por el administrador. No puedes retirar saldo.');
+            if (isWalletFrozen(u)) return showToast('🧊 Tu billetera está congelada por el administrador.');
             let amt = parseInt(document.getElementById('withdrawAmount').value);
             if (!amt || amt <= 0 || amt > u.balance) return showToast('Monto o saldo insuficiente.');
             u.balance -= amt;
@@ -1177,12 +1263,12 @@
             document.getElementById('withdrawAmount').value = '';
         }
 
-        // --- SISTEMA INTERACTIVO CON BLOQUEO POR CONGELAMIENTO ---
+        // --- SISTEMA INTERACTIVO DE JUEGOS ---
         function openGame(type) {
             let u = usersDB[activeUserUid];
             if (isWalletFrozen(u)) {
                 let timeText = u.frozenUntil === 'permanent' ? 'PERMANENTEMENTE' : `HASTA EL ${new Date(u.frozenUntil).toLocaleString()}`;
-                return alert(`🧊 ACCESO RESTRINGIDO POR ADMINISTRACIÓN:\n\nTu billetera y el acceso a las mesas de juego se encuentran CONGELADOS ${timeText}.\nNo puedes jugar a ningún juego mientras el congelamiento permanezca activo.`);
+                return alert(`🧊 ACCESO RESTRINGIDO:\n\nTu billetera y acceso a los juegos están CONGELADOS ${timeText}.`);
             }
 
             if (isGameAnimating) return;
@@ -1222,7 +1308,7 @@
             } else if (type === 'hilo') {
                 title.innerText = '📈 HI-LO ROYAL';
                 currentCardValue = Math.floor(Math.random() * 10) + 2;
-                arena.innerHTML = `<div style="text-align:center;"><div class="card-item" id="hiloCard" style="margin: 0 auto; font-size: 32px;">${currentCardValue}</div></div>`;
+                arena.innerHTML = `<div style="text-align:center;"><div class="card-item" id="hiloCard" style="margin: 0 auto;">${currentCardValue}</div></div>`;
             } else if (type === 'keno') {
                 title.innerText = '🔢 KENO MILLONARIO';
                 arena.innerHTML = `<div class="grid-5x5" id="kenoGrid"></div>`;
@@ -1232,13 +1318,13 @@
                 arena.innerHTML = `<div class="card-hand" id="pokerHand"><div class="card-item">🂡</div><div class="card-item">🂱</div><div class="card-item">🂾</div><div class="card-item">🃁</div><div class="card-item">🃞</div></div>`;
             } else if (type === 'coin') {
                 title.innerText = '🪙 CARA O CRUZ GOLD';
-                arena.innerHTML = `<div style="font-size: 60px;" id="coinIcon">🪙</div>`;
+                arena.innerHTML = `<div style="font-size: 50px;" id="coinIcon">🪙</div>`;
             } else if (type === 'plinko') {
                 title.innerText = '⚪ PLINKO CASINO';
-                arena.innerHTML = `<div style="font-size: 50px;" id="plinkoBall">📍</div>`;
+                arena.innerHTML = `<div style="font-size: 40px;" id="plinkoBall">📍</div>`;
             } else if (type === 'vault') {
                 title.innerText = '🔓 CAJA FUERTE MISTERIO';
-                arena.innerHTML = `<div style="font-size: 65px;" id="vaultBox">🔒</div>`;
+                arena.innerHTML = `<div style="font-size: 55px;" id="vaultBox">🔒</div>`;
             } else if (type === 'chest') {
                 title.innerText = '🧰 COFRE DEL FARAÓN';
                 arena.innerHTML = `<div class="chests-container"><div class="chest-item" onclick="selectChest(0)">🧰</div><div class="chest-item" onclick="selectChest(1)">🧰</div><div class="chest-item" onclick="selectChest(2)">🧰</div></div>`;
@@ -1544,7 +1630,7 @@
             return new Date().getTime() + (dur * mult);
         }
 
-        // --- 15 COMANDOS REALES Y COHERENTES DE ADMINISTRADOR ---
+        // --- ACCIONES DE ADMINISTRADOR ---
         function adminAddMoney() {
             let u = getTargetUser(); let amt = parseInt(document.getElementById('adminAmount').value);
             if (!u || !amt) return; u.balance += amt; saveDB(); updateUI(); showToast(`1. Acreditados $${amt.toLocaleString()} COP a UID ${u.uid}`);
