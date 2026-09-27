@@ -1098,7 +1098,7 @@
                     email: email,
                     identity: identity,
                     password: password,
-                    balance: 100000,
+                    balance: 0, // CAMBIADO: Inicia en 0 pesos ($0 COP)
                     avatar: 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
                     banned: false,
                     banUntil: null,
@@ -1268,7 +1268,6 @@
                 cell.onclick = () => {
                     if (cell.classList.contains('revealed')) return;
                     cell.classList.add('revealed');
-                    // MODIFICADO: Aumentada la probabilidad de encontrar diamante al 92% (era 20%)
                     cell.innerText = Math.random() < 0.08 ? '💣' : '💎';
                 };
                 grid.appendChild(cell);
@@ -1320,7 +1319,6 @@
             setGameLock(true);
 
             let hard = u.riggedHard;
-            // MODIFICADO: Cambiado de 0.20x a 0.60x para ganar con mucha más frecuencia por defecto
             let winChance = hard ? 0.10 : 0.60;
 
             document.getElementById('gameStatusText').innerText = '🎰 Jugada en progreso...';
